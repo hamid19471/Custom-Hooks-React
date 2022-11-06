@@ -2,15 +2,7 @@ import React from "react";
 import { useCount, useCountActions } from "./CounterProvider";
 const CounterActions = () => {
     const count = useCount();
-    const setCount = useCountActions();
-
-    const handleIncrement = () => {
-        setCount(count + 1);
-    };
-
-    const handleDecrement = () => {
-        count > 1 ? setCount(count - 1) : setCount(0);
-    };
+    const { handleDecrement, handleIncrement } = useCountActions();
 
     return (
         <div>
