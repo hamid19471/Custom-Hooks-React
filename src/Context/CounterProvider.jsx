@@ -17,4 +17,21 @@ const CounterProvider = ({ children }) => {
 export default CounterProvider;
 
 export const useCount = () => useContext(counterContext);
-export const useCountActions = () => useContext(counterContextDispacher);
+export const useCountActions = () => {
+    const setCount = useContext(counterContextDispacher);
+    const handleIncrement = () => {
+        setCount((prev) => prev + 1);
+    };
+
+    const handleDecrement = () => {
+        setCount((prev) => {
+            if (prev > 1) {
+                setCount(prev - 1);
+            } else {
+                setCount((prev = 0));
+            }
+        });
+    };
+
+    return { handleDecrement, handleIncrement };
+};
